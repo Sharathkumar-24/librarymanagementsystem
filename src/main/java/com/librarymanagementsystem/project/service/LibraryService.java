@@ -1,0 +1,22 @@
+package com.librarymanagementsystem.project.service;
+
+import com.librarymanagementsystem.project.Dtos.BookDto;
+import com.librarymanagementsystem.project.entity.BookEntity;
+
+import java.util.List;
+
+public interface LibraryService {
+    void addBook(BookDto bookDto);
+
+
+
+    List<BookEntity> getAllBooks();
+
+
+
+    BookDto getById(Long id);
+
+    Boolean deleteBookDetails(Long id);
+
+    BookDto edit(BookDto bookDto , Long id);
+}
