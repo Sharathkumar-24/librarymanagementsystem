@@ -6,17 +6,15 @@ import com.librarymanagementsystem.project.entity.BookEntity;
 import java.util.List;
 
 public interface LibraryService {
-    void addBook(BookDto bookDto);
+    String addBook(BookDto bookDto);
 
 
 
     List<BookEntity> getAllBooks();
 
-
-
     BookDto getById(Long id);
 
-    Boolean deleteBookDetails(Long id);
+    String deleteBookDetails(Long id);
 
     BookDto edit(BookDto bookDto , Long id);
 }

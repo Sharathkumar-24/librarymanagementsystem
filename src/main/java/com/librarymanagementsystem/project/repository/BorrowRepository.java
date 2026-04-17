@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface BorrowRepository extends JpaRepository<BorrowEntity,Long> {
-    @Query(value = "select Distinct type from borrowEntity",nativeQuery = true)
-    List<String> getProductTypes();
+   // @Query ("select * from borrow_entity where user_name=")
+    List<BorrowEntity> findByUserName(String userName);
 }

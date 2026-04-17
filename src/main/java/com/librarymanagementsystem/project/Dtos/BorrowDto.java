@@ -7,9 +7,8 @@ import java.time.LocalDate;
 
 @Data
 public class BorrowDto {
-    private Long borrowId;
-    private String userName;
-    private String book;
+    private Long userId;
+    private Long bookId;
     private LocalDate issueDate;
     private LocalDate dueDate;
     private LocalDate returnDate;

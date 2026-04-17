@@ -17,8 +17,7 @@ public class LibraryController {
 
     @PostMapping("/addbook")
     public String addbook(@RequestBody BookDto bookDto){
-        libraryService.addBook(bookDto);
-        return "Added successfully";
+        return libraryService.addBook(bookDto);
     }
 
     @GetMapping("/getAllBooks")
@@ -34,9 +33,9 @@ public class LibraryController {
 
 
     @DeleteMapping("/deletebook/{id}")
-    public Boolean  deleteBookDetails (@PathVariable Long id){
-        libraryService.deleteBookDetails(id);
-        return true;
+    public String  deleteBookDetails (@PathVariable Long id){
+        return libraryService.deleteBookDetails(id);
+
     }
 
     @PutMapping("/edit/{id}")

@@ -22,13 +22,18 @@ public class LibraryServiceImpl implements LibraryService {
     private ModelMapper modelMapper;
     private final BookRepository bookRepository;
     @Override
-    public void addBook(BookDto bookDto) {
-
+    public String addBook(BookDto bookDto) {
+        if ( bookDto.getAuthor()!=null && bookDto.getAuthor().trim().isEmpty() &&
+                bookDto.getCategory()!=null && bookDto.getCategory().trim().isEmpty() &&
+                bookDto.getCreatedAt()!=null &&
+                bookDto.getTotalCopies()!=null){
+            return "Sorry Something went Wrong (or) may be this Book already exists!! " ;
+        }
         BookEntity book = modelMapper.map(bookDto, BookEntity.class);
         book.setAvailableCopies(book.getTotalCopies());
         book.setIsActive(true);
         bookRepository.save(book);
-
+        return "Added Successfully";
     }
 
     @Override
@@ -47,14 +52,14 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public Boolean deleteBookDetails(Long id) {
+    public String deleteBookDetails(Long id) {
         Optional<BookEntity> idDetails = bookRepository.findById(id);
-        if (!idDetails.isEmpty()){
+        if (!idDetails.isEmpty() && idDetails.get().getIsActive()!=false){
             idDetails.get().setIsActive(false);
             bookRepository.save(idDetails.get());
-            return true;
+            return "Deleted Successfully";
         }
-        return false;
+        return "Error!!";
     }
 
     @Override
@@ -62,9 +67,9 @@ public class LibraryServiceImpl implements LibraryService {
         Optional<BookEntity> Details = bookRepository.findById(id);
         BookDto modifiedBookDetails = new BookDto();
         if (!Details.isEmpty()){
-            modelMapper.map(bookDto,Details.get());
+            modelMapper.map(bookDto, Details.get());
             bookRepository.save(Details.get());
-            modelMapper.map(Details.get(),modifiedBookDetails);
+            modelMapper.map(Details.get(), modifiedBookDetails);
         }
         return modifiedBookDetails;
     }
