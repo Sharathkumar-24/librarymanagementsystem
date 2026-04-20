@@ -17,6 +17,6 @@ public class UserEntity {
     @Enumerated (EnumType.STRING)
     private UserRole userrole;
     private int maxBooksAllowed;
-
+    private int borrowedBooks;
 
 }

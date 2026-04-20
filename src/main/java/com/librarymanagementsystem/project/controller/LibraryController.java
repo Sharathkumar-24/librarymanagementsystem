@@ -20,10 +20,12 @@ public class LibraryController {
         return libraryService.addBook(bookDto);
     }
 
+
     @GetMapping("/getAllBooks")
     public List<BookEntity> getAllBooks(){
         return libraryService.getAllBooks();
     }
+
 
     @GetMapping("/getbook/{id}")
     public BookDto getById(@PathVariable Long id){
@@ -31,11 +33,9 @@ public class LibraryController {
     }
 
 
-
     @DeleteMapping("/deletebook/{id}")
     public String  deleteBookDetails (@PathVariable Long id){
         return libraryService.deleteBookDetails(id);
-
     }
 
     @PutMapping("/edit/{id}")
@@ -43,4 +43,11 @@ public class LibraryController {
         return libraryService.edit(bookDto,id);
     }
 
+    @GetMapping("/search")
+    public List<BookEntity> searchDetails (@RequestParam (required = false) String title,
+                                        @RequestParam (required = false) String author,
+                                        @RequestParam (required = false) String category ,
+                                        @RequestParam (required = false) Long availableCopies){
+        return libraryService.searchDetails(title,author,category, availableCopies);
+    }
 }

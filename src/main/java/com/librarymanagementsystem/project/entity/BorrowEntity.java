@@ -15,8 +15,10 @@ public class BorrowEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long borrowId;
+    private Long userId;
     private String userName;
     private String book;
+    private Long bookId;
     private LocalDate issueDate;
     private LocalDate dueDate;
     private LocalDate returnDate;

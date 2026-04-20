@@ -10,4 +10,5 @@ public class UserDto {
     private String email;
     private UserRole userrole;
     private int maxBooksAllowed;
+    private int borrowedBooks;
 }

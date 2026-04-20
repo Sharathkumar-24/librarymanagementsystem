@@ -12,4 +12,13 @@ import java.util.List;
 public interface BookRepository extends JpaRepository<BookEntity,Long> {
     @Query(value = "select Distinct type from bookEntity",nativeQuery = true)
     List<String> getProductTypes();
+
+
+    List<BookEntity> findByTitleContainingIgnoreCase(String title);
+
+    List<BookEntity> findByAuthorContainingIgnoreCase(String author);
+
+    List<BookEntity> findByCategoryContainingIgnoreCase(String category);
+
+    List<BookEntity> findByAvailableCopies(Long availableCopies);
 }

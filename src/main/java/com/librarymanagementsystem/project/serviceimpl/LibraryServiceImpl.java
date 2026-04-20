@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,6 +73,29 @@ public class LibraryServiceImpl implements LibraryService {
             modelMapper.map(Details.get(), modifiedBookDetails);
         }
         return modifiedBookDetails;
+    }
+
+    @Override
+    public List<BookEntity> searchDetails(String title, String author,
+                                          String category, Long availableCopies) {
+
+        if (title!=null && !title.isBlank()){
+            return bookRepository.findByTitleContainingIgnoreCase(title);
+        }
+
+        if (author!=null && !author.isBlank()){
+           return bookRepository.findByAuthorContainingIgnoreCase(author);
+        }
+
+        if (category!=null && !category.isBlank()){
+            return bookRepository.findByCategoryContainingIgnoreCase(category);
+        }
+
+        if (availableCopies!=null){
+            return bookRepository.findByAvailableCopies(availableCopies);
+        }
+
+        return bookRepository.findAll();
     }
 
 

@@ -17,4 +17,6 @@ public interface LibraryService {
     String deleteBookDetails(Long id);
 
     BookDto edit(BookDto bookDto , Long id);
+
+    List<BookEntity> searchDetails(String tittle, String author, String category, Long availableCopies);
 }
