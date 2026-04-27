@@ -11,4 +11,6 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<UserEntity,Long> {
     @Query(value = "select Distinct type from userEntity",nativeQuery = true)
     List<String> getProductTypes();
+
+    UserEntity findByEmail(String username);
 }
